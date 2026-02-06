@@ -1,0 +1,33 @@
+name: Claude Bot
+on:
+  issue_comment:
+    types: [created]
+  issues:
+    types: [opened]
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  claude_task:
+    # Only run if '@claude' is mentioned in the text
+    if: contains(github.event.comment.body, '@claude') || contains(github.event.issue.body, '@claude')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      issues: write
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Claude Code Action
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # This allows Claude to actually push the changes it makes
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Optional: point to your CLAUDE.md for rules
+          claude_args: "--model claude-3-7-sonnet-latest"

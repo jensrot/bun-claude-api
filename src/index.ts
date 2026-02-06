@@ -1,7 +1,7 @@
-// src/index.ts
 import { Elysia } from 'elysia'
 
-const app = new Elysia()
+// Export 'app' so it can be imported in tests/
+export const app = new Elysia()
     .get("/", () => ({ status: "Bun is running", agent: "Claude" }))
     .get("/hello", () => "Hello from the API")
     .listen(3000)
