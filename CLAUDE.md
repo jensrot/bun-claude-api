@@ -37,3 +37,8 @@ When an issue is assigned or @claude is mentioned, follow this loop:
 ## PR Formatting Rules
 - Always identify the Issue ID you are working on.
 - In the PR body, you MUST include "Closes #[ID]" to ensure the issue is resolved upon merge.
+
+## Development Patterns
+- **Environment Variables:** Always use `process.env.VARIABLE_NAME`. 
+- **Required Vars:** The project requires `JWT_SECRET` for authentication logic.
+- **Testing:** When writing tests, assume `JWT_SECRET` is available in the environment.

@@ -31,3 +31,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           # Optional: point to your CLAUDE.md for rules
           claude_args: "--model claude-3-7-sonnet-latest"
+        env:
+          # Optional: set environment variables for your code action
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          node_env: "test"
